@@ -5,14 +5,39 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { Paths } from './Paths';
+import {Login} from "./pages/login";
+import {Users} from "./pages/users";
+import {AddUser} from "./pages/addUser";
+import {Status} from "./pages/status";
+import {EditUser} from "./pages/editUser";
 
+const router = createBrowserRouter([
+    {
+      path: Paths.home,
+      element: <Users/>
+    }, {
+        path: Paths.login,
+        element: <Login/>
+    }, {
+        path: Paths.addUser,
+        element: <AddUser/>
+    }, {
+        path: `${Paths.status}/:status`,
+        element: <Status/>
+    }, {
+        path: `${Paths.userEdit}/:id`,
+        element: <EditUser />,
+    },
+])
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+        <RouterProvider router={router}></RouterProvider>
     </Provider>
   </React.StrictMode>
 );
