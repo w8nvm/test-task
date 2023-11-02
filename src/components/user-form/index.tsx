@@ -1,5 +1,5 @@
 import {User} from "../../app/services/auth";
-import {Card, Checkbox, Form, Space, Switch} from "antd";
+import {Card, Checkbox, Form, Space} from "antd";
 import {CustomInput} from "../custom-input";
 import {CustomButton} from "../custom-button";
 

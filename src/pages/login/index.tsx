@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Layout} from "../../components/layout/layout";
-import {Card, Form, Input, Row} from "antd";
+import {Card, Form, Row} from "antd";
 import {CustomInput} from "../../components/custom-input";
 import {PasswordInput} from "../../components/password-input";
 import {CustomButton} from "../../components/custom-button";
@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom";
 
 export const Login = () => {
     const navigate = useNavigate()
-    const [loginUser, loginUserResult] = useLoginMutation()
+    const [loginUser] = useLoginMutation()
     const [error, setError] = useState('')
     const onLogin = async (data: User) => {
         try {
@@ -21,7 +21,7 @@ export const Login = () => {
             console.log(err)
             const isErrorWithData = isErrorWithMessage(err)
             if(isErrorWithData) {
-                if (err.status == 400) {
+                if (err.status === 400) {
                     setError('Неправильный логин или пароль')
                 }
             } else {

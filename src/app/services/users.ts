@@ -1,4 +1,4 @@
-import {authApi, User} from "./auth";
+import {User} from "./auth";
 import {api} from './api'
 
 export const usersApi = api.injectEndpoints({

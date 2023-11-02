@@ -1,6 +1,5 @@
-import { createApi, fetchBaseQuery, retry} from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {RootState} from "../store";
-import {EndpointBuilder} from "@reduxjs/toolkit/dist/query/endpointDefinitions";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: "https://test-assignment.emphasoft.com",            //process.env["API_BASE_URL"],
@@ -13,8 +12,6 @@ const baseQuery = fetchBaseQuery({
         }
     }
 })
-
-const baseQueryWithRetry = retry(baseQuery, {maxRetries: 3})
 
 export const api = createApi({
     reducerPath: 'splitApi',

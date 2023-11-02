@@ -5,15 +5,14 @@ import {
     CloseOutlined,
     PlusCircleOutlined
 } from "@ant-design/icons";
-import {removeUser, useAddUserMutation, useGetAllUsersQuery, useRemoveUserMutation} from "../../app/services/users";
-import {Button, Space, Table} from "antd";
+import {useGetAllUsersQuery, useRemoveUserMutation} from "../../app/services/users";
+import {Button, Input, Space, Table} from "antd";
 import {selectUser, User} from "../../app/services/auth";
 import {ColumnsType} from "antd/es/table";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Paths} from "../../Paths";
 import {useSelector} from "react-redux";
-import {selectUsers} from "../../features/users/usersSlice";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 
 export const Users = () => {
@@ -21,6 +20,8 @@ export const Users = () => {
     const user = useSelector(selectUser)
     const navigate = useNavigate()
     const {data, refetch, isLoading} = useGetAllUsersQuery()
+    const [displayedData, setDisplayedData] = useState(data)
+    const [searchValue, setSearchValue] = useState('');
 
 
     const handleRemoveUser = async (data: number) => {
@@ -36,11 +37,14 @@ export const Users = () => {
         {
             title: 'Id',
             dataIndex: 'id',
-            key: 'id'
+            key: 'id',
         }, {
             title: 'Username',
             dataIndex: 'username',
-            key: 'username'
+            key: 'username',
+            filterMode: "menu",
+            filterSearch: true,
+            onFilter: (value: string | number | boolean, record) => record.username.startsWith(value.toString()),
         }, {
             title: 'Имя',
             dataIndex: 'first_name',
@@ -113,9 +117,23 @@ export const Users = () => {
             <CustomButton type="primary" onClick={() => navigate(Paths.addUser)} icon={ <PlusCircleOutlined /> }>
                 Добавить
             </CustomButton>
+            <Input
+                placeholder="Search Name"
+                value={searchValue}
+                onChange={e => {
+                    console.log(e)
+                    const currValue = e.target.value;
+                    setSearchValue(currValue);
+                    // @ts-ignore
+                    const filteredData = data.filter(entry =>
+                        entry.username.toLowerCase().includes(currValue)
+                    );
+                    setDisplayedData(filteredData);
+                }}
+            />
             <Table
                 loading={isLoading}
-                dataSource={data}
+                dataSource={displayedData}
                 pagination={false}
                 columns={columns}
                 rowKey={(user) => user.id}

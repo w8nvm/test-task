@@ -4,14 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEditUserMutation, useGetUserQuery } from "../../app/services/users";
 import { UserForm } from "../../components/user-form";
 import { Layout } from "../../components/layout/layout";
-import { Paths } from "../../Paths";
-import { isErrorWithMessage } from "../../utils/is-error-with-message";
 import {User} from "../../app/services/auth";
 
 export const EditUser = () => {
     const navigate = useNavigate();
     const params = useParams<{ id: string }>();
-    const [error, setError] = useState("");
+    const [error, setError] = useState<any>("");
     const { data, isLoading } = useGetUserQuery(params.id || "");
     const [editUser] = useEditUserMutation();
 
@@ -28,14 +26,10 @@ export const EditUser = () => {
 
             await editUser(editedUser).unwrap();
 
-            navigate(`${Paths.status}/created`);
+            navigate(`/`);
         } catch (err) {
-            const maybeError = isErrorWithMessage(err);
-
-            if (maybeError) {
-                setError(err.data.message);
-            } else {
-                setError("Неизвестная ошибка");
+            if(typeof err === "object" && err !== null && 'data' in err) {
+                setError(err.data)
             }
         }
     };

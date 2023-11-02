@@ -6,12 +6,10 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectUser, User} from "../../app/services/auth";
 import {useAddUserMutation} from "../../app/services/users";
-import {Paths} from "../../Paths";
-import {isErrorWithMessage} from "../../utils/is-error-with-message";
 
 export const AddUser = () => {
 
-    const [error, setError] = useState()
+    const [error, setError] = useState<any>(null)
     const navigate = useNavigate()
     const user = useSelector(selectUser)
     const [addUser] = useAddUserMutation();
@@ -37,7 +35,6 @@ export const AddUser = () => {
             navigate(`/`)
         } catch(err) {
             if(typeof err === "object" && err !== null && 'data' in err) {
-                // @ts-ignore
                 setError(err.data)
             }
         }

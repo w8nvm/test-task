@@ -1,7 +1,5 @@
 import React from 'react'
 import {Form, Input} from 'antd'
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 
 type ValidateStatus = Parameters<typeof Form.Item>[0]['validateStatus'];
 
