@@ -1,12 +1,11 @@
 import {Layout} from "../../components/layout/layout";
-import {CustomButton} from "../../components/custom-button";
 import {
     CheckOutlined,
     CloseOutlined,
     PlusCircleOutlined
 } from "@ant-design/icons";
 import {useGetAllUsersQuery, useRemoveUserMutation} from "../../app/services/users";
-import {Button, Input, Space, Table} from "antd";
+import {Button, Input, Row, Space, Table} from "antd";
 import {selectUser, User} from "../../app/services/auth";
 import {ColumnsType} from "antd/es/table";
 import {useNavigate} from "react-router-dom";
@@ -20,13 +19,12 @@ export const Users = () => {
     const user = useSelector(selectUser)
     const navigate = useNavigate()
     const {data, refetch, isLoading} = useGetAllUsersQuery()
-    const [displayedData, setDisplayedData] = useState(data)
     const [searchValue, setSearchValue] = useState('');
 
 
-    const handleRemoveUser = async (data: number) => {
+    const handleRemoveUser = async (id: number) => {
         try {
-            await removeUser(data).unwrap()
+            await removeUser(id).unwrap()
             refetch()
         } catch(err) {
             console.log(err)
@@ -79,7 +77,7 @@ export const Users = () => {
             title: "Отредактировать",
             key: 'edit',
             render: (user) => {
-                if(user.id == 1) {
+                if(user.id === 1) {
                     return (<></>)
                 }
                 return (
@@ -93,7 +91,7 @@ export const Users = () => {
             title: 'Удалить',
             key: 'Delete',
             render: (user) => {
-                if(user.id == 1) {
+                if(user.id === 1) {
                     return (<></>)
                 }
                 return (
@@ -114,35 +112,26 @@ export const Users = () => {
 
     return (
         <Layout>
-            <CustomButton type="primary" onClick={() => navigate(Paths.addUser)} icon={ <PlusCircleOutlined /> }>
-                Добавить
-            </CustomButton>
-            <Input
-                placeholder="Search Name"
-                value={searchValue}
-                onChange={e => {
-                    console.log(e)
-                    const currValue = e.target.value;
-                    setSearchValue(currValue);
-                    // @ts-ignore
-                    const filteredData = data.filter(entry =>
-                        entry.username.toLowerCase().includes(currValue)
-                    );
-                    setDisplayedData(filteredData);
-                }}
-            />
+            <Row style={{marginBottom: '20px'}}>
+                <Button type="primary" onClick={() => navigate(Paths.addUser)} icon={ <PlusCircleOutlined /> } style={{marginRight: '20px'}}>
+                    Добавить
+                </Button>
+                <Input
+                    placeholder="Search Name"
+                    value={searchValue}
+                    onChange={e => {
+                        setSearchValue(e.target.value);
+                    }}
+                    style={{width: '25%'}}
+                />
+            </Row>
+
             <Table
                 loading={isLoading}
-                dataSource={displayedData}
+                dataSource={data?.filter(entry => entry.username.toLowerCase().includes(searchValue))}
                 pagination={false}
                 columns={columns}
                 rowKey={(user) => user.id}
-
-                // onRow={(user) => {
-                //     return {
-                //         onClick: () => navigate(`${Paths.user}/${user.id}`)
-                //     }
-                // }}
             >
             </Table>
         </Layout>
