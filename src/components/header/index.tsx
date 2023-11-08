@@ -1,5 +1,5 @@
 import styles from './index.module.css'
-import {LoginOutlined, LogoutOutlined, TeamOutlined} from '@ant-design/icons'
+import {LogoutOutlined, TeamOutlined} from '@ant-design/icons'
 import {Layout, Space, Typography} from "antd";
 import {CustomButton} from "../customButton";
 import {Link, useNavigate} from 'react-router-dom'
@@ -31,24 +31,13 @@ export const Header = () => {
                 </Link>
             </Space>
             {
-                user ? (
+                user && (
                     <CustomButton
                         type={'default'}
                         icon={<LogoutOutlined/>}
                         onClick={onLogoutClick}
                     > Выйти
                     </CustomButton>
-                ) : (
-                    <Space align={"center"}>
-                        <Link to={Paths.login}>
-                            <CustomButton
-                                type='default'
-                                icon={<LoginOutlined/>}
-                            >
-                                Войти
-                            </CustomButton>
-                        </Link>
-                    </Space>
                 )
             }
         </Layout.Header>
