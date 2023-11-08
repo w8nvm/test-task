@@ -20,7 +20,7 @@ export const Header = () => {
 
     return (
         <Layout.Header className={styles.header}>
-            <Space align={'baseline'}>
+            <Space align='baseline'>
                 <TeamOutlined className={styles.teamIcon}/>
                 <Link to={Paths.home}>
                     <CustomButton type='text'>
@@ -33,7 +33,7 @@ export const Header = () => {
             {
                 user && (
                     <CustomButton
-                        type={'default'}
+                        type='default'
                         icon={<LogoutOutlined/>}
                         onClick={onLogoutClick}
                     > Выйти

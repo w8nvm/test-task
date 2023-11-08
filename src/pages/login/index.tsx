@@ -30,21 +30,21 @@ export const Login = () => {
 
     return (
         <Layout>
-            <Row align={"middle"} justify={"center"}>
+            <Row align="middle" justify="center">
                 <Card title='Авторизация' style={{width: '30rem'}}>
                     <Form onFinish={onLogin}>
                         <CustomInput
-                            type={'text'}
-                            name={'username'}
-                            placeholder={'Имя пользователя'}
+                            type='text'
+                            name='username'
+                            placeholder='Имя пользователя'
                         />
                         <PasswordInput
-                            name={'password'}
-                            placeholder={'Пароль'}
+                            name='password'
+                            placeholder='Пароль'
                         />
                         <CustomButton
-                            type={"primary"}
-                            htmlType={'submit'}
+                            type="primary"
+                            htmlType='submit'
                         > Войти
                         </CustomButton>
                         <ErrorAlert message={error}></ErrorAlert>

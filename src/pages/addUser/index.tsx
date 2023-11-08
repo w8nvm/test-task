@@ -43,10 +43,10 @@ export const AddUser = () => {
 
     return (
         <Layout>
-            <Row align={"middle"} justify={"center"}>
+            <Row align="middle" justify="center">
                 <UserForm
                     onFinish={handleAddUser}
-                    title={"Добавить пользователя"}
+                    title="Добавить пользователя"
                     btnText="Добавить"
                     error={error}
                     user={defaultUser}
