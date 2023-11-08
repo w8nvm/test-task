@@ -2,8 +2,8 @@ import { Row } from "antd";
 import { useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { useEditUserMutation, useGetUserQuery } from "../../app/services/users";
-import { UserForm } from "../../components/user-form";
-import { Layout } from "../../components/layout/layout";
+import { UserForm } from "../../components/userForm";
+import { Layout } from "../../components/layout";
 import {User} from "../../app/services/auth";
 
 export const EditUser = () => {

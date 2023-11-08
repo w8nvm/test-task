@@ -1,7 +1,7 @@
 import {User} from "../../app/services/auth";
 import {Card, Checkbox, Form, Space} from "antd";
-import {CustomInput} from "../custom-input";
-import {CustomButton} from "../custom-button";
+import {CustomInput} from "../customInput";
+import {CustomButton} from "../customButton";
 
 type Props<T> = {
     onFinish: (values: T) => void

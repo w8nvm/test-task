@@ -1,7 +1,7 @@
 import styles from './index.module.css'
 import {LoginOutlined, LogoutOutlined, TeamOutlined} from '@ant-design/icons'
 import {Layout, Space, Typography} from "antd";
-import {CustomButton} from "../custom-button";
+import {CustomButton} from "../customButton";
 import {Link, useNavigate} from 'react-router-dom'
 import {Paths} from "../../Paths";
 import {useDispatch, useSelector} from "react-redux";

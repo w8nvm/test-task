@@ -1,6 +1,6 @@
-import {Layout} from "../../components/layout/layout";
+import {Layout} from "../../components/layout";
 import {Row} from "antd";
-import {UserForm} from "../../components/user-form";
+import {UserForm} from "../../components/userForm";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";

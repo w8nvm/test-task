@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
-import {Layout} from "../../components/layout/layout";
+import {Layout} from "../../components/layout";
 import {Card, Form, Row} from "antd";
-import {CustomInput} from "../../components/custom-input";
-import {PasswordInput} from "../../components/password-input";
-import {CustomButton} from "../../components/custom-button";
+import {CustomInput} from "../../components/customInput";
+import {PasswordInput} from "../../components/passwordInput";
+import {CustomButton} from "../../components/customButton";
 import {useLoginMutation, User} from "../../app/services/auth";
-import {ErrorAlert} from "../../components/error-alert";
-import {isErrorWithMessage} from "../../utils/is-error-with-message";
+import {ErrorAlert} from "../../components/errorAlert";
 import {useNavigate} from "react-router-dom";
 
 export const Login = () => {
@@ -18,9 +17,7 @@ export const Login = () => {
             await loginUser(data).unwrap();
             navigate('/')
         } catch(err) {
-            console.log(err)
-            const isErrorWithData = isErrorWithMessage(err)
-            if(isErrorWithData) {
+            if(typeof err === "object" && err !== null && 'status' in err) {
                 if (err.status === 400) {
                     setError('Неправильный логин или пароль')
                 }
