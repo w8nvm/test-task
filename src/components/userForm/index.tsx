@@ -2,6 +2,7 @@ import {User} from "../../app/services/auth";
 import {Card, Checkbox, Form, Space} from "antd";
 import {CustomInput} from "../customInput";
 import {CustomButton} from "../customButton";
+import {PasswordInput} from "../passwordInput";
 
 type Props<T> = {
     onFinish: (values: T) => void
@@ -25,8 +26,8 @@ export const UserForm = ({
             <Form name='add-user' onFinish={onFinish} onFinishFailed={onFinishFailed} initialValues={user}>
                 <CustomInput errorMsg={error?.username} validateStatus={error?.username ? 'error' : 'validating'}
                              name='username' placeholder='Никнейм'/>
-                <CustomInput errorMsg={error?.password} validateStatus={error?.password ? 'error' : 'validating'}
-                             name='password' placeholder='Пароль'/>
+                <PasswordInput errorMsg={error?.password} validateStatus={error?.password ? 'error' : 'validating'}
+                               name='password' placeholder='Пароль'/>
                 <CustomInput name='first_name' placeholder='Имя'/>
                 <CustomInput name='last_name' placeholder='Фамилия'/>
                 <Space direction="vertical" size="large">
