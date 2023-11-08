@@ -31,7 +31,7 @@ export const CustomInput = (
                 placeholder={placeholder}
                 type={type}
                 size="large"
-            ></Input>
+            />
         </Form.Item>
     )
 }

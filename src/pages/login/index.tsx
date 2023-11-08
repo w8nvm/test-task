@@ -47,7 +47,7 @@ export const Login = () => {
                             htmlType='submit'
                         > Войти
                         </CustomButton>
-                        <ErrorAlert message={error}></ErrorAlert>
+                        <ErrorAlert message={error}/>
                     </Form>
                 </Card>
             </Row>

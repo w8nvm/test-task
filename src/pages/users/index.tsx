@@ -135,8 +135,7 @@ export const Users = () => {
                 pagination={false}
                 columns={columns}
                 rowKey={(user) => user.id}
-            >
-            </Table>
+            />
         </Layout>
     )
 }

@@ -33,7 +33,7 @@ root.render(
     <React.StrictMode>
         <Provider store={store}>
             <PersistGate persistor={persistor}>
-                <RouterProvider router={router}></RouterProvider>
+                <RouterProvider router={router}/>
             </PersistGate>
         </Provider>
     </React.StrictMode>
