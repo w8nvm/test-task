@@ -74,8 +74,8 @@ export const Users = () => {
         }, {
             title: "Отредактировать",
             key: 'edit',
-            render: (user) => {
-                if (user.id === 1) {
+            render: (user: User) => {
+                if (user.is_superuser) {
                     return (<></>)
                 }
                 return (
@@ -90,8 +90,8 @@ export const Users = () => {
         }, {
             title: 'Удалить',
             key: 'Delete',
-            render: (user) => {
-                if (user.id === 1) {
+            render: (user: User) => {
+                if (user.is_superuser) {
                     return (<></>)
                 }
                 return (
