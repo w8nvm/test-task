@@ -82,7 +82,7 @@ export const Users = () => {
                 }
                 return (
                     <Space size="middle">
-                        <Button onClick={() => {navigate(`/user/edit/${user.id}`)}}>Edit</Button>
+                        <Button onClick={() => {navigate(`${Paths.userEdit}/${user.id}`)}}>Edit</Button>
                     </Space>
                 )
             }
@@ -106,7 +106,7 @@ export const Users = () => {
 
     useEffect(() => {
         if(!user) {
-            navigate('/login')
+            navigate(Paths.home)
         }
     }, [navigate, user])
 

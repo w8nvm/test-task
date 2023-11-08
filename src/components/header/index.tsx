@@ -15,7 +15,7 @@ export const Header = () => {
     const onLogoutClick = () => {
         dispatch(logout())
         localStorage.removeItem('token')
-        navigate('/login')
+        navigate(Paths.login)
     }
 
     return (

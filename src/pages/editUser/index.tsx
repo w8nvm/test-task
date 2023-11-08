@@ -5,6 +5,7 @@ import { useEditUserMutation, useGetUserQuery } from "../../app/services/users";
 import { UserForm } from "../../components/userForm";
 import { Layout } from "../../components/layout";
 import {User} from "../../app/services/auth";
+import {Paths} from "../../Paths";
 
 export const EditUser = () => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ export const EditUser = () => {
 
             await editUser(editedUser).unwrap();
 
-            navigate(`/`);
+            navigate(Paths.home);
         } catch (err) {
             if(typeof err === "object" && err !== null && 'data' in err) {
                 setError(err.data)

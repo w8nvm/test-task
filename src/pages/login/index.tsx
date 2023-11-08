@@ -7,6 +7,7 @@ import {CustomButton} from "../../components/customButton";
 import {useLoginMutation, User} from "../../app/services/auth";
 import {ErrorAlert} from "../../components/errorAlert";
 import {useNavigate} from "react-router-dom";
+import {Paths} from "../../Paths";
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -15,7 +16,7 @@ export const Login = () => {
     const onLogin = async (data: User) => {
         try {
             await loginUser(data).unwrap();
-            navigate('/')
+            navigate(Paths.home)
         } catch(err) {
             if(typeof err === "object" && err !== null && 'status' in err) {
                 if (err.status === 400) {

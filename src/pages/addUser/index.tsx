@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectUser, User} from "../../app/services/auth";
 import {useAddUserMutation} from "../../app/services/users";
+import {Paths} from "../../Paths";
 
 export const AddUser = () => {
 
@@ -25,14 +26,14 @@ export const AddUser = () => {
 
     useEffect(() => {
         if(!user) {
-            navigate('login')
+            navigate(Paths.home)
         }
     }, [user, navigate]);
 
     const handleAddUser = async (data: User) => {
         try {
             await addUser(data).unwrap()
-            navigate(`/`)
+            navigate(Paths.home)
         } catch(err) {
             if(typeof err === "object" && err !== null && 'data' in err) {
                 setError(err.data)

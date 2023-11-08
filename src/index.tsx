@@ -8,7 +8,6 @@ import { Paths } from './Paths';
 import {Login} from "./pages/login";
 import {Users} from "./pages/users";
 import {AddUser} from "./pages/addUser";
-import {Status} from "./pages/status";
 import {EditUser} from "./pages/editUser";
 import {PersistGate} from "redux-persist/integration/react";
 
@@ -22,9 +21,6 @@ const router = createBrowserRouter([
     }, {
         path: Paths.addUser,
         element: <AddUser/>
-    }, {
-        path: `${Paths.status}/:status`,
-        element: <Status/>
     }, {
         path: `${Paths.userEdit}/:id`,
         element: <EditUser />,
