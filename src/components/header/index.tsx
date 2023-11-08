@@ -13,7 +13,6 @@ export const Header = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const onLogoutClick = () => {
-        console.log('LOGOUT')
         dispatch(logout())
         localStorage.removeItem('token')
         navigate('/login')

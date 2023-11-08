@@ -27,7 +27,7 @@ export const Users = () => {
             await removeUser(id).unwrap()
             refetch()
         } catch(err) {
-            console.log(err)
+            //todo: create alert of some sort
         }
     }
 

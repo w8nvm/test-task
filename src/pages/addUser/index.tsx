@@ -40,16 +40,11 @@ export const AddUser = () => {
         }
     }
 
-    const logErrors = (errorInfo: any) => {
-        console.log(errorInfo)
-    }
-
     return (
         <Layout>
             <Row align={"middle"} justify={"center"}>
                 <UserForm
                     onFinish={handleAddUser}
-                    onFinishFailed={logErrors}
                     title={"Добавить пользователя"}
                     btnText="Добавить"
                     error={error}
