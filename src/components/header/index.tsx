@@ -21,8 +21,8 @@ export const Header = () => {
     return (
         <Layout.Header className={styles.header}>
             <Space align={'baseline'}>
-                <TeamOutlined className={ styles.teamIcon } />
-                <Link to={ Paths.home }>
+                <TeamOutlined className={styles.teamIcon}/>
+                <Link to={Paths.home}>
                     <CustomButton type='text'>
                         <Typography.Title level={3}>
                             Emphasoft
@@ -39,11 +39,11 @@ export const Header = () => {
                     > Выйти
                     </CustomButton>
                 ) : (
-                    <Space align={"center"} >
+                    <Space align={"center"}>
                         <Link to={Paths.login}>
                             <CustomButton
                                 type='default'
-                                icon={ <LoginOutlined/>}
+                                icon={<LoginOutlined/>}
                             >
                                 Войти
                             </CustomButton>

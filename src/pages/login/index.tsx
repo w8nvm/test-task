@@ -17,8 +17,8 @@ export const Login = () => {
         try {
             await loginUser(data).unwrap();
             navigate(Paths.home)
-        } catch(err) {
-            if(typeof err === "object" && err !== null && 'status' in err) {
+        } catch (err) {
+            if (typeof err === "object" && err !== null && 'status' in err) {
                 if (err.status === 400) {
                     setError('Неправильный логин или пароль')
                 }

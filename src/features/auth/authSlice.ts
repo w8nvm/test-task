@@ -25,5 +25,5 @@ const slice = createSlice({
     }
 })
 
-export const { logout } = slice.actions
+export const {logout} = slice.actions
 export default slice.reducer

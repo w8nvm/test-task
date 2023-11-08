@@ -53,4 +53,5 @@ export const {
         editUser,
         removeUser,
         addUser
-    }} = usersApi
+    }
+} = usersApi

@@ -8,9 +8,10 @@ type Props = {
 }
 
 export const PasswordInput = ({
-    name,
-    placeholder,
-    dependencies}: Props) => {
+                                  name,
+                                  placeholder,
+                                  dependencies
+                              }: Props) => {
     return (
         <Form.Item
             name={name}
@@ -20,9 +21,9 @@ export const PasswordInput = ({
                     required: true,
                     message: 'Обязательное поле'
                 },
-                ({ getFieldValue}) => ({
+                ({getFieldValue}) => ({
                     validator(_, value) {
-                        if(value.length < 6) {
+                        if (value.length < 6) {
                             return Promise.reject(new Error('Пароль должен быть длиннее 6-ти символов'))
                         } else {
                             return Promise.resolve()

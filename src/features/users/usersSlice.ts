@@ -24,7 +24,7 @@ const slice = createSlice({
             })
     }
 })
-
+ 
 export default slice.reducer
 
 export const selectUsers = (state: RootState) => state.users;

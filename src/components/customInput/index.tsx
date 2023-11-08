@@ -15,7 +15,7 @@ export const CustomInput = (
     {
         name,
         placeholder,
-        type="text",
+        type = "text",
         validateStatus,
         errorMsg
     }: Props) => {

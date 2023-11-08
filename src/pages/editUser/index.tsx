@@ -1,9 +1,9 @@
-import { Row } from "antd";
-import { useState } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
-import { useEditUserMutation, useGetUserQuery } from "../../app/services/users";
-import { UserForm } from "../../components/userForm";
-import { Layout } from "../../components/layout";
+import {Row} from "antd";
+import {useState} from 'react';
+import {useNavigate, useParams} from "react-router-dom";
+import {useEditUserMutation, useGetUserQuery} from "../../app/services/users";
+import {UserForm} from "../../components/userForm";
+import {Layout} from "../../components/layout";
 import {User} from "../../app/services/auth";
 import {Paths} from "../../Paths";
 
@@ -11,7 +11,7 @@ export const EditUser = () => {
     const navigate = useNavigate();
     const params = useParams<{ id: string }>();
     const [error, setError] = useState<any>("");
-    const { data, isLoading } = useGetUserQuery(params.id || "");
+    const {data, isLoading} = useGetUserQuery(params.id || "");
     const [editUser] = useEditUserMutation();
 
     if (isLoading) {
@@ -29,7 +29,7 @@ export const EditUser = () => {
 
             navigate(Paths.home);
         } catch (err) {
-            if(typeof err === "object" && err !== null && 'data' in err) {
+            if (typeof err === "object" && err !== null && 'data' in err) {
                 setError(err.data)
             }
         }
@@ -43,7 +43,7 @@ export const EditUser = () => {
                     title="Редактировать сотрудника"
                     user={data}
                     btnText="Редактировать"
-                    error={ error }
+                    error={error}
                 />
             </Row>
         </Layout>

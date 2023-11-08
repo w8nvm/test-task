@@ -12,7 +12,7 @@ export type User = {
     is_superuser: boolean
 }
 
-type ResponseLoginData = User & {token: string}
+type ResponseLoginData = User & { token: string }
 
 export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
@@ -26,7 +26,7 @@ export const authApi = api.injectEndpoints({
     })
 })
 
-export const { useLoginMutation } = authApi
-export const { endpoints: { login }} = authApi
+export const {useLoginMutation} = authApi
+export const {endpoints: {login}} = authApi
 
 export const selectUser = (state: RootState) => state.auth.user

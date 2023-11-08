@@ -1,9 +1,5 @@
 import {Layout} from "../../components/layout";
-import {
-    CheckOutlined,
-    CloseOutlined,
-    PlusCircleOutlined
-} from "@ant-design/icons";
+import {CheckOutlined, CloseOutlined, PlusCircleOutlined} from "@ant-design/icons";
 import {useGetAllUsersQuery, useRemoveUserMutation} from "../../app/services/users";
 import {Button, Input, Row, Space, Table} from "antd";
 import {selectUser, User} from "../../app/services/auth";
@@ -26,7 +22,7 @@ export const Users = () => {
         try {
             await removeUser(id).unwrap()
             refetch()
-        } catch(err) {
+        } catch (err) {
             console.log(err)  //todo: create alert of some sort
         }
     }
@@ -57,7 +53,7 @@ export const Users = () => {
             title: 'Активен',
             dataIndex: 'is_active',
             key: 'is_active',
-            render: (isActive) => isActive ? <CheckOutlined /> : <CloseOutlined />
+            render: (isActive) => isActive ? <CheckOutlined/> : <CloseOutlined/>
         }, {
             title: 'Последняя активность',
             dataIndex: 'last_login',
@@ -72,17 +68,21 @@ export const Users = () => {
             title: 'SuperUser',
             dataIndex: 'is_superuser',
             key: 'is_superuser',
-            render: (isActive) => {return isActive ? <CheckOutlined /> : <CloseOutlined />}
+            render: (isActive) => {
+                return isActive ? <CheckOutlined/> : <CloseOutlined/>
+            }
         }, {
             title: "Отредактировать",
             key: 'edit',
             render: (user) => {
-                if(user.id === 1) {
+                if (user.id === 1) {
                     return (<></>)
                 }
                 return (
                     <Space size="middle">
-                        <Button onClick={() => {navigate(`${Paths.userEdit}/${user.id}`)}}>Edit</Button>
+                        <Button onClick={() => {
+                            navigate(`${Paths.userEdit}/${user.id}`)
+                        }}>Edit</Button>
                     </Space>
                 )
             }
@@ -91,12 +91,14 @@ export const Users = () => {
             title: 'Удалить',
             key: 'Delete',
             render: (user) => {
-                if(user.id === 1) {
+                if (user.id === 1) {
                     return (<></>)
                 }
                 return (
                     <Space size="middle">
-                        <Button onClick={() => {handleRemoveUser(user.id)}}>Delete</Button>
+                        <Button onClick={() => {
+                            handleRemoveUser(user.id)
+                        }}>Delete</Button>
                     </Space>
                 )
             }
@@ -105,7 +107,7 @@ export const Users = () => {
 
 
     useEffect(() => {
-        if(!user) {
+        if (!user) {
             navigate(Paths.home)
         }
     }, [navigate, user])
@@ -113,7 +115,8 @@ export const Users = () => {
     return (
         <Layout>
             <Row style={{marginBottom: '20px'}}>
-                <Button type="primary" onClick={() => navigate(Paths.addUser)} icon={ <PlusCircleOutlined /> } style={{marginRight: '20px'}}>
+                <Button type="primary" onClick={() => navigate(Paths.addUser)} icon={<PlusCircleOutlined/>}
+                        style={{marginRight: '20px'}}>
                     Добавить
                 </Button>
                 <Input

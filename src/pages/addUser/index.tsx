@@ -25,7 +25,7 @@ export const AddUser = () => {
     }
 
     useEffect(() => {
-        if(!user) {
+        if (!user) {
             navigate(Paths.home)
         }
     }, [user, navigate]);
@@ -34,8 +34,8 @@ export const AddUser = () => {
         try {
             await addUser(data).unwrap()
             navigate(Paths.home)
-        } catch(err) {
-            if(typeof err === "object" && err !== null && 'data' in err) {
+        } catch (err) {
+            if (typeof err === "object" && err !== null && 'data' in err) {
                 setError(err.data)
             }
         }

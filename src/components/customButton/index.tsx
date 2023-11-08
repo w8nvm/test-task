@@ -15,7 +15,7 @@ type Props = {
 export const CustomButton = (
     {
         children,
-        htmlType='button',
+        htmlType = 'button',
         type,
         danger,
         loading,
@@ -34,7 +34,7 @@ export const CustomButton = (
                 icon={icon}
                 onClick={onClick}
             >
-                    {children}
+                {children}
             </Button>
         </Form.Item>
     )
