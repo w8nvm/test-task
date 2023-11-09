@@ -12,10 +12,11 @@ import {useEffect, useState} from "react";
 
 export const Users = () => {
     const [removeUser] = useRemoveUserMutation();
-    const user = useSelector(selectUser)
+    const currentUser = useSelector(selectUser)
     const navigate = useNavigate()
     const {data, refetch, isLoading} = useGetAllUsersQuery()
     const [searchValue, setSearchValue] = useState('');
+    const [isSuperUser, setIsSuperUser] = useState(false)
 
 
     const handleRemoveUser = async (id: number) => {
@@ -86,8 +87,11 @@ export const Users = () => {
                     </Space>
                 )
             }
+        },
+    ]
 
-        }, {
+    const superUserColumns = [
+        {
             title: 'Удалить',
             key: 'Delete',
             render: (user: User) => {
@@ -107,10 +111,17 @@ export const Users = () => {
 
 
     useEffect(() => {
-        if (!user) {
+        if (!currentUser) {
             navigate(Paths.home)
         }
-    }, [navigate, user])
+        if (data !== undefined) {
+            const user = data.find((user) => user.username === currentUser.user?.username)
+            if (user !== undefined) {
+                setIsSuperUser(user.is_superuser)
+            }
+        }
+    }, [navigate, currentUser, data, isSuperUser])
+
 
     return (
         <Layout>
@@ -133,7 +144,7 @@ export const Users = () => {
                 loading={isLoading}
                 dataSource={data?.filter(entry => entry.username.toLowerCase().includes(searchValue))}
                 pagination={false}
-                columns={columns}
+                columns={isSuperUser ? columns.concat(superUserColumns) : columns}
                 rowKey={(user) => user.id}
             />
         </Layout>

@@ -8,17 +8,20 @@ import {useLoginMutation, User} from "../../app/services/auth";
 import {useNavigate} from "react-router-dom";
 import {Paths} from "../../Paths";
 import {ErrorAlert} from "../../components/errorAlert";
+import {useDispatch} from "react-redux";
+import {addUsername} from "../../features/auth/authSlice";
 
 export const Login = () => {
     const navigate = useNavigate()
     const [loginUser] = useLoginMutation()
     const [error, setError] = useState<any>()
+    const dispatch = useDispatch()
     const onLogin = async (data: User) => {
         try {
             await loginUser(data).unwrap();
+            dispatch(addUsername(data.username))
             navigate(Paths.home)
         } catch (err) {
-            console.log(err)
             if (typeof err === "object" && err !== null && 'data' in err) {
                 setError(err.data)
             } else {
