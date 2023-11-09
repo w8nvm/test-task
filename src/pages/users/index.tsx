@@ -112,10 +112,10 @@ export const Users = () => {
 
     useEffect(() => {
         if (!currentUser) {
-            navigate(Paths.home)
+            navigate(Paths.login)
         }
         if (data !== undefined) {
-            const user = data.find((user) => user.username === currentUser.user?.username)
+            const user = data.find((user) => user.username === currentUser?.username)
             if (user !== undefined) {
                 setIsSuperUser(user.is_superuser)
             }

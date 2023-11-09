@@ -1,11 +1,12 @@
 import {Row} from "antd";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useEditUserMutation, useGetUserQuery} from "../../app/services/users";
 import {UserForm} from "../../components/userForm";
 import {Layout} from "../../components/layout";
-import {User} from "../../app/services/auth";
+import {selectUser, User} from "../../app/services/auth";
 import {Paths} from "../../Paths";
+import {useSelector} from "react-redux";
 
 export const EditUser = () => {
     const navigate = useNavigate();
@@ -13,6 +14,13 @@ export const EditUser = () => {
     const [error, setError] = useState<any>("");
     const {data, isLoading} = useGetUserQuery(params.id || "");
     const [editUser] = useEditUserMutation();
+    const user = useSelector(selectUser);
+
+    useEffect(() => {
+        if (!user) {
+            navigate(Paths.login)
+        }
+    }, [user, navigate]);
 
     if (isLoading) {
         return <span>Загрузка</span>

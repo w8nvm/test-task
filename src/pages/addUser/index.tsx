@@ -26,7 +26,7 @@ export const AddUser = () => {
 
     useEffect(() => {
         if (!user) {
-            navigate(Paths.home)
+            navigate(Paths.login)
         }
     }, [user, navigate]);
 
